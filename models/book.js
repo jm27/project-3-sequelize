@@ -1,13 +1,10 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
-const bookSchema = new Schema({
-    title: { type: String, required: true },
-    author: { type: String, required: true },
-    synopsis: { type: String },
-    date: { type: Date, default: Date.now }
-});
-
-const Book = mongoose.model("Book", bookSchema);
-
-module.exports = Book;
+module.exports = function(sequelize, DataTypes) {
+    var Book = sequelize.define("Book", {
+      title: DataTypes.STRING,
+      author: DataTypes.STRING,
+      synopsis: DataTypes.TEXT,
+      date: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
+    });
+ 
+    return Book;
+  };
